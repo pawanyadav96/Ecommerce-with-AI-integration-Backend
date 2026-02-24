@@ -3,6 +3,8 @@ package com.example.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,15 +27,22 @@ public class ProductController {
 	public ProductService productService;
 	
 	@GetMapping("/products")
-	public List<Product> getProducts(){
+	public ResponseEntity<List<Product>> getProducts(){
 		System.out.println("Inside product controller");
-		return productService.getAllProduct();
+		return new  ResponseEntity<>(productService.getAllProduct() , HttpStatus.OK);
 	}
 	
 	@GetMapping("/products/{prodId}")
-	public  Product getProductById(@PathVariable int  prodId)
+	public  ResponseEntity<Product> getProductById(@PathVariable int  prodId)
 	{
-		return productService.getProductById(prodId);
+		Product prod = productService.getProductById(prodId);
+		if(prod !=null) {
+			return new ResponseEntity<>(prod,HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(prod,HttpStatus.NOT_FOUND);
+		}
+		
 	}
 	
 	@PostMapping("/products")
