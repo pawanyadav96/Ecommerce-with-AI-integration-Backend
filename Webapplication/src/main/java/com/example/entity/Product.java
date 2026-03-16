@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import tools.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
@@ -29,6 +30,9 @@ public class Product {
 	private Date releasedate;
 	private int quantity;
 	private boolean available;
+//	aNNOTATION FOR LARGE OBJECT
+	@Lob
+	private byte[] imageData;
 	public int getQuantity() {
 		return quantity;
 	}
