@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.web.csrf.CsrfToken;
+//import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,11 +42,11 @@ public class ProductController {
 	}
 
 	
-	@GetMapping("/csrfToken")
-	public CsrfToken getcsrfToken(HttpServletRequest request)
-	{
-		return(CsrfToken) request.getAttribute("_csrf");
-	}
+//	@GetMapping("/csrfToken")
+//	public CsrfToken getcsrfToken(HttpServletRequest request)
+//	{
+//		return(CsrfToken) request.getAttribute("_csrf");
+//	}
 	
 	@GetMapping("/products/{prodId}")
 	public  ResponseEntity<Product> getProductById(@PathVariable int  prodId)
